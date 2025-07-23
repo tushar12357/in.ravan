@@ -1,0 +1,51 @@
+.card-scroll-container {
+  width: 100%;
+  
+  overflow: hidden;
+  outline: none;
+}
+
+.card-scroll {
+  padding: 24px 24px 24px 24px;
+  border-radius: 24px;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.card-item {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  margin-right: 24px;
+  width: 280px; /* desktop default */
+}
+
+/* --- Mobile view --- */
+@media (max-width: 768px) {
+  .card-scroll {
+    padding: 24px 24px 24px 24px;
+    /* scroll-snap-type: none; */
+  }
+
+  /* @media (max-width: 768px) {
+    .card-scroll {
+      scroll-snap-type: none;
+    }
+  } */
+
+  .card-item {
+    width: 100%;
+    margin: 0 50px;
+  }
+}
+.card-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.card-scroll,
+.card-item {
+  touch-action: pan-y; /* allows vertical scroll only, disables horizontal swipes */
+}
+
