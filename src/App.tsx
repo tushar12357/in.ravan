@@ -135,7 +135,6 @@ function App() {
   const languageOptions = [
     { value: "en", label: "English" },
     { value: "hi", label: "Hindi" },
-    { value: "mr", label: "Marathi" },
   ];
 
   console.log(videoWidgetAgentIds[selectedLanguage]);
