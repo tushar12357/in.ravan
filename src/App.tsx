@@ -4,6 +4,7 @@ import { InfiniteCardScroll } from "./components/InfiniteCardScroll/InfiniteCard
 import { mockCards } from "./data/mockCards";
 import { UltravoxSession } from "ultravox-client";
 import axios from "axios";
+import partnerLogo from "../public/cropped-iam-logo-1.png"; // Adjust the path to your image
 
 // Mapping of language codes to agentIds for Video Widget
 const videoWidgetAgentIds = {
@@ -12,6 +13,7 @@ const videoWidgetAgentIds = {
   es: "4d8bec16-562a-4125-b86e-aba31e70759d", // Spanish
   fr: "cfdb1510-904f-4fdc-8858-8fc09f9afe34", // French
   de: "3f7ebb25-c854-4c11-961e-2c76c4f98e12", // German
+  mr: "",
 };
 
 const widgets = [
@@ -133,12 +135,10 @@ function App() {
   const languageOptions = [
     { value: "en", label: "English" },
     { value: "hi", label: "Hindi" },
-    { value: "es", label: "Spanish" },
-    { value: "fr", label: "French" },
-    { value: "de", label: "German" },
+    { value: "mr", label: "Marathi" },
   ];
 
-  console.log(videoWidgetAgentIds[selectedLanguage])
+  console.log(videoWidgetAgentIds[selectedLanguage]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-red-50">
@@ -187,8 +187,7 @@ function App() {
                           </option>
                         ))}
                       </select>
-                      {/* Custom arrow icon */}
-                                          </div>
+                    </div>
                   </div>
                 )}
                 <div className="relative group">
@@ -220,6 +219,19 @@ function App() {
               </div>
             ))}
           </main>
+          {/* New Pricing Contact Section */}
+          <section className="text-center mt-16 lg:mt-20">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              For Pricing, Contact Below - Exclusive Partner for India
+            </h2>
+            <div className="flex justify-center">
+              <img
+                src={partnerLogo}
+                alt="Exclusive Partner for India"
+                className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto mt-6 rounded-lg shadow-md"
+              />
+            </div>
+          </section>
         </div>
       </div>
       <div className="p-6 sm:p-8">
