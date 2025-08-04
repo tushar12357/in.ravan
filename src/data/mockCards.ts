@@ -5,6 +5,7 @@ export const mockCards: CardInterface[] = [
   {
     id: 1,
     title: "Real Estate",
+    route:'real-estate',
     description: "Residential Listings & Seller Leads",
     imageUrl: "#FF5722", // Primary Orange
     icon: Home, // Icon for real estate
@@ -14,6 +15,7 @@ export const mockCards: CardInterface[] = [
   {
     id: 2,
     title: "E-commerce",
+    route:'e-commerce',
     description: "Product Recommendations & Sales Conversion",
     imageUrl: "#FF7043", // Light Orange
     icon: Shirt, // Icon for retail/e-commerce
@@ -23,6 +25,7 @@ export const mockCards: CardInterface[] = [
   {
     id: 3,
     title: "Financial Services",
+    route:'finance',
     description: "Mortgage Lenders & Loan Officers",
     imageUrl: "#FF3D00", // Deep Orange
     icon: Briefcase, // Icon for finance
@@ -32,6 +35,7 @@ export const mockCards: CardInterface[] = [
   {
     id: 4,
     title: "Tourism",
+    route:'tourism',
     description: "Vacation Packages & Travel Agencies",
     imageUrl: "#FF6E40", // Bright Orange
     icon: Sun, // Icon for tourism
@@ -41,6 +45,7 @@ export const mockCards: CardInterface[] = [
   {
     id: 5,
     title: "IT Solutions",
+    route:'it',
     description: "Software, Hardware, & IT Support",
     imageUrl: "#FF8A65", // Soft Orange
     icon: Gamepad, // Icon for tech/IT
@@ -50,6 +55,7 @@ export const mockCards: CardInterface[] = [
   {
     id: 6,
     title: "Health & Wellness",
+    route:'health',
     description: "Complete hospitality management solutions",
     imageUrl: "#FF8A65", // Soft Orange
     icon: Heart, // Icon for health
@@ -59,6 +65,7 @@ export const mockCards: CardInterface[] = [
   {
     id: 7,
     title: "Home Improvement",
+    route:'home-improvement',
     description: "Remodeling, HVAC, Landscaping",
     imageUrl: "#FF8A65", // Soft Orange
     icon: Paintbrush, // Icon for home improvement
@@ -68,6 +75,7 @@ export const mockCards: CardInterface[] = [
   {
     id: 8,
     title: "Event Planning",
+    route:'event-planning',
     description: "Weddings & Corporate Events",
     imageUrl: "#FF8A65", // Soft Orange
     icon: Calendar, // Icon for events
@@ -77,6 +85,7 @@ export const mockCards: CardInterface[] = [
   {
     id: 9,
     title: "Retail",
+    route:'retail',
     description: "Fashion, Beauty, and Lifestyle",
     imageUrl: "#FF8A65", // Soft Orange
     icon: Shirt, // Icon for retail (shared with e-commerce, as both are retail-related)
@@ -86,6 +95,7 @@ export const mockCards: CardInterface[] = [
   {
     id: 10,
     title: "Hospitality",
+    route:'hospitality',
     description: "Restaurants & Catering",
     imageUrl: "#FF8A65", // Soft Orange
     icon: Utensils, // Icon for hospitality/food
@@ -95,6 +105,7 @@ export const mockCards: CardInterface[] = [
   {
     id: 11,
     title: "Recruitment",
+    route:'recruitment',
     description: "Job Placement & Talent Acquisition",
     imageUrl: "#FF8A65", // Soft Orange
     icon: Users, // Icon for recruitment

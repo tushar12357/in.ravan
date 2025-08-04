@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState, useCallback, memo } from "react";
 import { Card } from "./Card";
-import { AgentDetail } from "./AgentDetail";
 import type { CardInterface } from "../../types";
 import "./InfiniteCardScroll.css";
 import RealEstateAgentVoice from "./RealEstateAgentVoice";
+
 interface InfiniteCardScrollProps {
   cards: CardInterface[];
   className?: string;
-  autoScrollInterval?: number;
   pauseDuration?: number;
   handleStart: (agent_code: string) => void;
   handleEnd: () => void;
@@ -23,7 +22,6 @@ export const InfiniteCardScroll: React.FC<InfiniteCardScrollProps> = memo(
   ({
     cards,
     className = "",
-    // autoScrollInterval = 30,
     pauseDuration = 2000,
     handleStart,
     handleEnd,
@@ -40,10 +38,6 @@ export const InfiniteCardScroll: React.FC<InfiniteCardScrollProps> = memo(
     const [agentName, setAgentName] = useState<string | undefined | null>(
       undefined
     );
-    const [selectedAgent, setSelectedAgent] = useState<CardInterface | null>(
-      null
-    );
-    // const originalIntervalRef = useRef(autoScrollInterval);
 
     // Touch support
     const touchStartX = useRef(0);
@@ -103,14 +97,7 @@ export const InfiniteCardScroll: React.FC<InfiniteCardScrollProps> = memo(
       }
 
       setIsScrolling(true);
-      // scrollIntervalRef.current = setInterval(() => {
-      //   const container = scrollRef.current;
-      //   if (container) {
-      //     container.scrollLeft += 1;
-      //     handleScrollBoundaries();
-      //   }
-      // }, originalIntervalRef.current);
-    }, [handleScrollBoundaries]);
+    }, []);
 
     const stopScroll = useCallback(() => {
       if (scrollIntervalRef.current) {
@@ -225,16 +212,11 @@ export const InfiniteCardScroll: React.FC<InfiniteCardScrollProps> = memo(
 
     const handleAgentSelect = useCallback(
       (agent: CardInterface) => {
-        setSelectedAgent(agent);
         stopScroll();
+        window.location.href = `https://ravan.ai/${agent.route}`;
       },
       [stopScroll]
     );
-
-    const handleBackToGrid = useCallback(() => {
-      setSelectedAgent(null);
-      startScroll();
-    }, [startScroll]);
 
     const handleDrag = (e: React.DragEvent) => {
       e.preventDefault();
@@ -242,7 +224,7 @@ export const InfiniteCardScroll: React.FC<InfiniteCardScrollProps> = memo(
 
     return (
       <div
-        className={`card-scroll-container  relative ${className}`}
+        className={`card-scroll-container relative ${className}`}
         onKeyDown={handleKeyDown}
         tabIndex={0}
         role="region"
@@ -253,60 +235,49 @@ export const InfiniteCardScroll: React.FC<InfiniteCardScrollProps> = memo(
             onClose={handleEnd}
             sessionStatus={sessionStatus}
             agentName={agentName}
-            // duration={duration}
           />
         )}
 
-        {selectedAgent ? (
-          <AgentDetail
-            agent={selectedAgent}
-            onBack={handleBackToGrid}
-            handleStart={handleStart}
-            handleEnd={handleEnd}
-            getAgentName={setAgentName}
-          />
-        ) : (
-          <div className="navigation-controls relative">
-            <button
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 shadow-md rounded-full w-10 h-10 flex items-center justify-center text-gray-800 hover:text-black transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              onClick={scrollPrev}
-              aria-label="Previous card"
-            >
-              &lt;
-            </button>
-            <button
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 shadow-md rounded-full w-10 h-10 flex items-center justify-center text-gray-800 hover:text-black transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              onClick={scrollNext}
-              aria-label="Next card"
-            >
-              &gt;
-            </button>
-            <div
-              className="card-scroll"
-              ref={scrollRef}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-              onDrag={handleDrag}
-              role="list"
-            >
-              {cards.map((card) => (
-                <div key={card.id} className="card-item" role="listitem">
-                  <Card
-                    card={card}
-                    isActive={false}
-                    handleStart={handleStart}
-                    handleEnd={handleEnd}
-                    getAgentName={setAgentName}
-                    onAgentSelect={handleAgentSelect}
-                  />
-                </div>
-              ))}
-            </div>
+        <div className="navigation-controls relative">
+          <button
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 shadow-md rounded-full w-10 h-10 flex items-center justify-center text-gray-800 hover:text-black transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onClick={scrollPrev}
+            aria-label="Previous card"
+          >
+            &lt;
+          </button>
+          <button
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 shadow-md rounded-full w-10 h-10 flex items-center justify-center text-gray-800 hover:text-black transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onClick={scrollNext}
+            aria-label="Next card"
+          >
+            &gt;
+          </button>
+          <div
+            className="card-scroll"
+            ref={scrollRef}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            onDrag={handleDrag}
+            role="list"
+          >
+            {cards.map((card) => (
+              <div key={card.id} className="card-item" role="listitem">
+                <Card
+                  card={card}
+                  isActive={false}
+                  handleStart={handleStart}
+                  handleEnd={handleEnd}
+                  getAgentName={setAgentName}
+                  onAgentSelect={handleAgentSelect}
+                />
+              </div>
+            ))}
           </div>
-        )}
+        </div>
       </div>
     );
   }
